@@ -1,0 +1,55 @@
+/*-------------------------------------------------------------------*\
+  SETTINGS - Variables globales comme les polices et les couleurs
+\*-------------------------------------------------------------------*/
+
+@import "./1-settings/colors.css";
+@import "./1-settings/ease.css";
+@import "./1-settings/fonts.css";
+@import "./1-settings/space.css";
+@import "./1-settings/z-index.css";
+
+
+/*-------------------------------------------------------------------*\
+  TOOLS - Mixins et fonctions par défaut
+\*-------------------------------------------------------------------*/
+
+@import "./2-tools/mixins.css";
+@import "./2-tools/utilities.css";
+
+
+/*-------------------------------------------------------------------*\
+  GENERIC - Styles de base (réinitialisation, box-sizing, etc.)
+\*-------------------------------------------------------------------*/
+
+@import "./3-generic/purify.css";
+
+
+/*-------------------------------------------------------------------*\
+  ELEMENTS - Éléments HTML
+\*-------------------------------------------------------------------*/
+
+@import "./4-elements/link.css";
+@import "./4-elements/list.css";
+@import "./4-elements/typography.css";
+
+
+/*-------------------------------------------------------------------*\
+  OBJECTS - Classes non décorées
+\*-------------------------------------------------------------------*/
+
+@import "./5-objects/wrapper.css";
+
+
+/*-------------------------------------------------------------------*\
+  COMPONENTS
+\*-------------------------------------------------------------------*/
+@import "./6-components/bloc-text-img.css";
+@import "./6-components/form.css";
+@import "./6-components/header.css";
+@import "./6-components/grid.css";
+@import "./6-components/footer.css";
+@import "./6-components/button.css";
+
+/*-------------------------------------------------------------------*\
+  UTILITIES - Utilitaires et !important (peu)
+\*-------------------------------------------------------------------*/

@@ -1,0 +1,180 @@
+/*------------------------------------*\
+  bloc-text-img / components
+\*------------------------------------*/
+
+/* img */
+
+img {
+    width: 100%;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+img:hover {
+  transform: scale(1.05);
+  transition: transform var(--transition-duration-normal) var(--transition-ease);
+}
+
+/* COMPONENT : image wrapper */
+
+.tile--image-wrapper {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile--image-wrapper img {
+    width:  200px;
+    height: 170px;
+    background-color: var(--color-primary);
+}
+
+/* tile--image-wrapper-fiche */
+
+.tile--image-wrapper-fiche{
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile--image-wrapper-fiche img {
+  width:  200px;
+}
+
+@media all and (min-width: 1024px) {
+  .tile--image-wrapper-fiche img {
+    width:  150px;
+  }
+}
+
+.timbre-vide img:hover {
+  transform: none;
+  transition: none;
+}
+
+/* tile--image-wrapper-actu */
+
+.tile--image-wrapper-lord {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  margin-top: 20px;
+  background-color:rgba(46, 63, 131, 0.1)
+}
+
+.tile--image-wrapper-lord img {
+  width: 400px;
+  object-fit:cover;
+}
+
+/* tile--image-wrapper-actu */
+
+.tile--image-wrapper-actu {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  background-color:rgba(46, 63, 131, 0.1);
+}
+
+.tile--image-wrapper-actu img {
+    width: 300px;
+    object-fit:cover;
+}
+
+.img-marteau {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+}
+
+/**
+* Loupe https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp
+*/ 
+
+.img-magnifier-container {
+  position: relative;
+}
+
+.img-magnifier-container img:hover {
+  transform: none;
+  transition: none;
+  cursor: zoom-in;
+}
+
+.img-magnifier-container img {
+  width: 600px;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  z-index: 10;
+  border: 3px solid #000;
+  border-radius: 10px;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 200px;
+  height: 200px;
+}
+
+
+
+/* Lot/Border bottom */
+
+.tile__border-bottom {
+  border-bottom: solid black 2px;
+  text-align: center;
+  padding-bottom:10px;
+  margin-bottom:10px;
+}
+
+@media all and (min-width: 378px) {
+  .tile__border-bottom {
+    text-align:start
+  }
+}
+
+.lot {
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 150px;
+  margin-top: 20px;
+  padding: 4px;
+  border: 1px solid var(--color-secondary);
+}
+
+@media all and (min-width: 1029px) {
+  .lot {
+    width: 100%;
+  }
+}
+
+.mise-message {
+  background-color: rgba(46, 63, 131, 0.1);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 150px;
+  margin-top: 20px;
+  padding: 4px;
+  border: 1px solid var(--color-primary);
+  width: 100%;
+}
+
+
+
+
+
+
+

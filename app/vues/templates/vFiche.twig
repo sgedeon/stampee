@@ -1,0 +1,177 @@
+<div class="grid-fiche mt--small mb--medium" data-js-grid>
+    <div class="grid__item grid__item--1" data-js-item>
+    {% set index = 0 %}
+    {% for image in images %}
+         {% set index = index + 1 %}
+         {% if index < 4 %}
+            <div class="wrapper-enchere tile--image-wrapper-fiche">
+                <a href="#" onclick="document.getElementById('myimage').src='{{ image.url }}';"this.src='{{ image.url }}?rand='+ Math.random();";"><img src="{{ image.url }}" alt="{{ image.titre }}"></a>
+            </div>
+         {% endif %}
+    {% endfor %}
+    {% if index < 3 %}
+        {% set index = index + 1 %}
+        <div class="wrapper-enchere timbre-vide tile--image-wrapper-fiche">
+            <a><img src="./Images/timbre-vide.png" alt="{{ enchere.titre }}"></a>
+        </div>
+    {% endif %}
+    {% if index < 3 %}
+        {% set index = index + 1 %}
+        <div class="wrapper-enchere timbre-vide tile--image-wrapper-fiche">
+            <a><img src="./Images/timbre-vide.png" alt="{{ enchere.titre }}"></a>
+        </div>
+    {% endif %}
+    </div>
+
+    <article class="grid__item-fiche grid__item--2 flex" data-js-item>
+        <div class="img-magnifier-container">
+            <img id="myimage"src="{{ enchere.url }}" alt="{{ enchere.titre }}">
+        </div>
+    </article>
+
+    <article class="grid__item-details grid__item--3" data-js-item>
+        {% set aujourdhui = ('now'|date('U')) %}
+        {% set daysLeft = ((enchere.date_fin|date('U')- 'now'|date('U')) / 60 / 60 / 24) + 1 %}
+        {% if enchere.date_fin|date('U') <= aujourdhui %}
+            <div>
+                <h1 class="lot mb--small">Lot {{ enchere.id_timbre_enchere }}</h1>
+                <div>
+                    <h2>Timbre {{ enchere.pays_origine }}</h2>
+                    <p>{{ enchere.nom }}</p>
+                    <p>Lot de {{ images|length }} timbres</p>
+                </div>
+                <h3 class="mt--small">Enchère remportée pour : {{ enchere.mise }}$</h3>
+                <p>Par : {{ utilisateur.utilisateur_prenom }} {{ utilisateur.utilisateur_nom }}</p>
+                <p>Déçu ? Le Lord Stampee vous propose un catalogue de plusieurs millions de timbres. Trouvez la perle rare <a href="catalogue"><b>ICI</b></a>!</p>
+                <p><b>Réservé aux abonnés</b></p>
+            </div>
+            <div>
+                <div class="flex-enchere">
+                    <div class="flex-min-max">
+                        <label for="direct">Mise direct</label>
+                        {% if nouvelleMise == 0 %}
+                           {% set enchereMin = enchere.prix_plancher %}
+                           <input id="direct" name="mise_direct" type="number" min = {{ enchereMin }} value = {{ enchereMin }}>
+                        {% else %}
+                           <input id="direct" name="mise_direct" type="number" min = {{ enchere.mise }} value="0">
+                        {% endif %}
+                    </div>
+                    <div class="flex-min-max">
+                        <label for="auto">Mise auto</label>
+                        <input id="auto" type="number" value="0">
+                    </div>
+                </div>
+                <button class="button-find" type="button">Terminé</button>
+            </div>
+        {% else %}
+            <div>
+                <div class="mb--small">
+                    <h1 class="lot mb--small">Lot {{ enchere.id_timbre_enchere }}</h1>
+                    <div class="flex-date">
+                        <div>
+                            <h2>Timbre {{ enchere.pays_origine }}</h2>
+                            <p>{{ enchere.nom }}</p>
+                            <p>Lot de {{ images|length }} timbres</p>
+                        </div>
+                        <div>
+                            <h3> Prix plancher : </h3>
+                            <p class="right"> {{ enchere.prix_plancher }} $</h3>
+                        </div>
+                    </div>
+                </div>
+                {% if nouvelleMise == 0 %}
+                    <div>
+                        <div class="mb-small">
+                            <h3>Enchère courante :</h3>
+                            <p>Aucune enchère</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div>
+                        <div class="flex-date mb-small">
+                            <div>
+                                <h3 class="">Enchère courante : </h3>
+                                <p> {{ nouvelleMise }} $</h3>
+                            </div>
+                            <div class="mb-small mt-small">
+                                <h3>Dernière mise par : </h3>
+                                <p class="right">{{ utilisateur.utilisateur_prenom }} {{ utilisateur.utilisateur_nom }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="flex-date">
+                    <p class="fiche--color-red">Fin de la vente : {{ enchere.date_fin }}</p>
+                    {% if daysLeft|number_format > 1 %}
+                        <p class="fiche--color-red">{{daysLeft|number_format}} jours restant</p>
+                    {% elseif daysLeft|number_format == 1 %}
+                        <p class="fiche--color-red">{{daysLeft|number_format}} jour restant</p>
+                    {% endif %}
+                </div>
+                <p><b>Réservé aux abonnés</b></p>
+            </div>
+            <div>
+                <div class="mise-message">
+                    <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction }}&nbsp;</p> 
+                </div>
+                <form class="flex-enchere" id="myForm" method="POST" action="">
+                    <div class="flex-min-max">
+                        <label for="direct">Mise direct</label>
+                        {% if nouvelleMise == 0 %}
+                           {% set enchereMin = enchere.prix_plancher %}
+                           <input id="direct"  name="mise_direct" type="number" min = {{ enchereMin }} value = {{ enchereMin }}>
+                        {% else %}
+                           {% set enchereMin = nouvelleMise + 10 %}
+                           <input id="direct"  name="mise_direct" type="number" min = {{ enchereMin }} value = {{ enchereMin }}>
+                        {% endif %}
+                    </div>
+                    <div class="flex-min-max">
+                        <label for="auto">Mise auto</label>
+                        <input id="auto" type="number" name="mise_auto" min = "0" value="0">
+                    </div>
+                </form>
+                <button class="button-find confirmerForm" type="button" form="myForm">Miser</button>
+            </div>
+        {% endif %}
+
+    </article>
+
+    <article class="grid__item-details grid__item--4 tile__border-bottom" data-js-item>
+        <h2 class="mb--small">Détails de l'enchère</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Condition : <b>{{ enchere.etat }}</b></p>
+        <p>Pays : <b>{{ enchere.pays_origine }}</b></p>
+        <p>Année d'impression : <b>{{ enchere.date_de_creation }}</b></p>
+        <p>Dimensions : <b>{{ enchere.dimensions }}</b></p>
+        <p>Certification : <b>{{ enchere.certification }}</b></p>
+    </article>
+    
+    <h2 class="title--secondary mt--small mb--small grid__item--5">
+        Ces enchères pourraient vous intéresser
+    </h2>
+    {% set index = 5 %}
+    {% set aujourdhui = ('now'|date('U')) %}
+    {% for enchere in encheres %}
+        {% if enchere.date_fin|date('U') >= aujourdhui and enchere.coup_de_coeur_du_lord == "oui" and index < 9 %}
+            {% set index = index + 1 %}
+            <a href="fiche?id_enchere={{ enchere.id_timbre_enchere }}" class="grid__item grid__item--{{ index }}" data-js-item>
+                <article>
+                    <div>
+                        <div class="tile--image-wrapper">
+                            <img src="{{ enchere.url }}" alt=""{{ enchere.nom }}"">
+                        </div>
+                        <div class="flex">
+                            <h2 class="lot">Lot {{ enchere.id_timbre_enchere }}</h2>
+                        </div>
+                        <h3 class="mt--small">Timbre {{ enchere.pays_origine }}</h3>
+                        <p>{{ enchere.nom }}, {{ enchere.date_de_création }}</p>
+                        <p>Lot de 1 timbre</p>
+                    </div>
+                </article>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div> 
+{{ include("modaleSuppressionForm.twig") }}  
+
+ 

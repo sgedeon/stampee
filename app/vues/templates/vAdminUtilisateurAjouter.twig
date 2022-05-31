@@ -1,0 +1,27 @@
+<section>
+  <div class="flex-title">
+      <h1 class="title--secondary mb--small">
+          {{ titre|upper }}
+      </h1>
+  </div>
+
+  <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction }}&nbsp;</p> 
+
+  <form method="POST" class="connexion">
+
+    <label>Prénom</label>
+    <input name="utilisateur_prenom" value="">
+    <span>&nbsp;{{ erreurs.utilisateur_prenom }}</span>
+
+    <label>Nom</label>
+    <input name="utilisateur_nom" value="">
+    <span>&nbsp;{{ erreurs.utilisateur_nom }}</span>
+
+    <label>Courriel</label>
+    <input name="utilisateur_courriel" value="">
+    <span>&nbsp;{{ errCourriel }} {{ erreurs.utilisateur_courriel }}</span>
+
+    <input type="submit" class="button" value="Envoyer">
+  </form>
+  
+</section>

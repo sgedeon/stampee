@@ -1,0 +1,219 @@
+/*------------------------------------*\
+  button / components
+\*------------------------------------*/
+
+/* https://dev.to/gscode/20-css-buttons-4cni */
+
+.button {
+  border-color: #222E66;
+  background-color:  rgba(0, 0, 0, 0.5);
+  background-image: -webkit-linear-gradient(45deg, #222E66 50%, transparent 50%);
+  background-image: linear-gradient(45deg, #222E66 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  color: var(--xlight-gray);
+  font-family: arial black, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-transition: background 600ms ease-in-out;
+  transition: background 600ms ease-in-out;
+  padding: 1.5vw;
+}
+
+.button-find {
+  border: 1px solid var(--color-primary);
+  background-color:  rgba(0, 0, 0, 0.5);
+  background-image: -webkit-linear-gradient(45deg, #222E66 50%, transparent 50%);
+  background-image: linear-gradient(45deg, #222E66 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  color: var(--xlight-gray);
+  font-family: arial black, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-transition: background 500ms ease-in-out;
+  transition: background 500ms ease-in-out;
+  padding: 10px;
+}
+
+form .button-find {
+  width: 100%;
+}
+
+.flex > .button-find {
+  width: 100%;
+}
+
+.grid__item-details .button-find {
+  width: 100%;
+}
+
+.button-find:hover {
+  background-position: 0;
+  cursor: pointer;
+}
+
+.button:hover {
+    background-position: 0;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 375px) {
+  .button {
+    font-size: 1.5vw;
+  }
+}
+
+/* fav icon list/column */
+
+.fav {
+  display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .fav {
+    display: flex;
+    justify-content: flex-end;
+    transform: translateX(35px);
+  }
+  .fav > div {
+    color: var(--color-secondary);
+    background-color: var(--color-white);
+    cursor: pointer;
+  }
+}
+
+/* button burger */
+
+/*https://codepen.io/ainalem/pen/wvKOEMV*/
+
+.header__main-burger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header__main-burger {
+    display: none;
+  }
+}
+
+.line {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+
+/* fenêtres modales 
+     ============== */
+
+#modaleSuppression {
+  border: none;
+  border-radius: 5px;
+  border: 1px solid var(--color-secondary);
+  background: var(--color-light-gray);
+}
+
+#modaleSuppression p {
+  padding: 10px 20px;
+  font-size: 24px;
+}
+
+#modaleSuppression .actions {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 10px;
+}
+
+#modaleSuppression button {
+  width: auto;
+  margin: 0 30px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+#modaleSuppression::backdrop {
+  background: rgba(46, 63, 131, 0.1);
+}
+
+#modaleSuppressionForm {
+  border: none;
+  border-radius: 5px;
+  border: 1px solid var(--color-secondary);
+  background: var(--color-light-gray);
+}
+
+#modaleSuppressionForm p {
+  padding: 10px 20px;
+  font-size: 24px;
+}
+
+#modaleSuppressionForm.actions {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 10px;
+}
+
+#modaleSuppressionForm button {
+  width: auto;
+  margin: 0 30px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+#modaleSuppressionForm::backdrop {
+  background: rgba(46, 63, 131, 0.1);
+}
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+

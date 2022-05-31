@@ -1,0 +1,38 @@
+/*------------------------------------*\
+  link / elements
+\*------------------------------------*/
+
+a,
+a:hover,
+a:visited,
+a:active {
+    color: var(--black);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 1024px) {
+  .pagination {
+    margin-left: 350px;
+  }
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: var(--color-primary);
+  color: var(--xlight-gray);
+}
+

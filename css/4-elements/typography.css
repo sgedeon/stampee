@@ -1,0 +1,124 @@
+/*------------------------------------*\
+  typography / elements
+\*------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    font-family:var(--font-primary);
+    color:var(--color-tertiary);
+    font-weight: bolder;
+}
+
+h1 {
+  letter-spacing: 0.04em;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.5;
+  font-family: var(--font-secondary);
+}
+
+.title {
+  letter-spacing: 0.02em;
+}
+
+.title--primary {
+  font-size: 16px;
+  line-height: 5vw;
+  letter-spacing: .05em;
+  color:var(--xlight-gray);
+  font-weight: bolder;
+}
+
+.title--secondary {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: center;
+  letter-spacing: .05em;
+  font-weight: bolder;
+}
+
+.title-timbre {
+  padding: 10px;
+}
+
+/* typography- responsive */
+
+@media only screen and (min-width: 375px) {
+    .title--primary {
+      font-size: 6vw;
+    }
+
+    .title--secondary {
+      font-size: 5vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .title--primary {
+      font-size: 5vw;
+    }
+
+    .title--secondary {
+      font-size: 3vw;
+    }
+}
+  
+@media only screen and (min-width: 1024px) {
+    .title--primary {
+      font-size: 3vw;
+    }
+
+    .title--secondary {
+      font-size: 2.5vw;
+      text-align:start;
+    }
+
+    p {
+      font-size: 1.3vw;
+    }
+
+    h3 {
+      font-size: 1.5vw;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .title--primary {
+      font-size: 2vw;
+    }
+
+    .title--secondary {
+      font-size: 1.8vw;
+    }
+
+    p {
+      font-size: 1.4vw;
+    }
+
+    h3 {
+      font-size: 1.6vw;
+    }
+}
+
+
+
+
+
+

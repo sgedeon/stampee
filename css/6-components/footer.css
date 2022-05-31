@@ -1,0 +1,50 @@
+/*------------------------------------*\
+  footer / components
+\*------------------------------------*/
+
+.footer--flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer {
+    padding :20px 0;
+    color: var(--xlight-gray);
+    background-color: var(--color-primary);
+}
+
+.footer__media-sociaux {
+    margin-left: 10px;
+    color: var(--xlight-gray);
+    transform: scale(1.15);
+}
+
+.footer-li > h3  {
+    font-size: 1.8vw;
+}
+
+@media only screen and (min-width: 375px) {
+    .footer-li > h3  {
+        font-size: 1.6vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-li > h3  {
+        font-size: 1.4vw;
+    }
+}
+
+.footer-li > h3:hover {
+    text-decoration: underline;
+    transform: scale(1.15);
+}
+
+.footer-li > h3 {
+  color: var(--xlight-gray);;
+}
+
+.footer__nav-list {
+    display: flex;
+    justify-content: center;
+}

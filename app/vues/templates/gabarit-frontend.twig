@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Author: S.Gedeon">
+    <script src="https://kit.fontawesome.com/f7a6758aaf.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css?v=1.2">
+    <script src="./scripts/main.js?v=1.5" defer></script>
+    <title>Lord Stampee</title>
+</head>
+
+<body>
+    <header class="header__main wrapper">
+        <div class="header__top">   
+            <nav class="header__top-sub-nav">
+                <ul class="menu">
+                    <li class="header__top-li"><a href="#">Contactez-nous</a><span class="chevron bottom"></span>
+                        <ul class="dropdown">
+                            <li><a href="#">Angleterre</a></li>
+                            <li><a href="#">Canada</a></li>
+                            <li><a href="#">États-Unis</a></li>
+                            <li><a href="#">Australie</a></li>
+                        </ul>
+                    </li>
+                    <li class="header__top-li"><a href="#">À propos de Lord Reginald Stampee III</a><span class="chevron bottom"></span>
+                        <ul class="dropdown">
+                            <li><a href="#">La philatélie c'est la vie</a></li>
+                            <li><a href="#">Stampee, une vie, une oeuvre</a></li>
+                            <li><a href="#">Notre mission, nos valeurs</a></li>
+                        </ul>
+                    </li>
+                    {% if u.utilisateur_prenom is defined %}
+                        <li class="header__top-li"><a href="#">Bonjour {{ u.utilisateur_prenom|upper }} !</a><span class="chevron bottom"></span>
+                            <ul class="dropdown">
+                                <li><a href="admin?entite=enchere">Votre profil</a></li>
+                                <li><a class="confirmer" data-href="admin?entite=utilisateur&action=d">Déconnexion</a></li>
+                                <li><a href="#">Politique </a></li>
+                            </ul>
+                        </li>
+                    {{ include("modaleSuppression.twig") }}
+                    {% else %}
+                        <li class="header__top-li"><a href="#">Connexion/Inscription</a><span class="chevron bottom"></span>
+                            <ul class="dropdown">
+                                <li><a href="admin?entite=utilisateur">Connexion à votre profil</a></li>
+                                <li><a href="ajouterUtilisateur">Inscription</a></li>
+                                <li><a href="#">Politique </a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li><a href="#">Termes et conditions</a></li>
+                </ul>
+            </nav>
+            <nav class="header__main-nav">
+                <div class="header__main-logo">
+                    <a href="."><img src="./Images/logo-stampee.png" alt="Lord Stampee"></a>
+                </div>
+                <ul class="menu">
+                    <li class="header__top-li"><a href="#">Fonctionnement de la plateforme</a><span class="chevron bottom"></span>
+                        <ul class="dropdown">
+                            <li><a href="#">Comment créér votre profil</a></li>
+                            <li><a href="#">Comment placer une offre</a></li>
+                            <li><a href="#">Comment suivre une enchère</a></li>
+                            <li><a href="mailto:s.gedeon@hotmail.fr">Contactez le webmestre</a></li>
+                        </ul>
+                    </li>
+                    <li class="header__top-li"><a href="catalogue">Catalogue des enchères</a></li>
+                    <li class="header__top-li"><a href="#">Actualités</a><span class="chevron bottom"></span>
+                        <ul class="dropdown">
+                            <li><a href="#">Le Stamphebdo</a></li>
+                            <li><a href="#">Nos enchères évènements</a></li>
+                            <li><a href="#">Bridge</a></li>
+                        </ul>
+                    </li>
+                    <li class="header__top-li header__recherche">
+                        <input type="text" id="rechercher" placeholder="Rechercher"  class="header__recherche" name="rechercher">
+                        <label hidden for="rechercher">rechercher</label><br>
+                        <button type="submit" title="rechercher"><i class="fa fa-search"></i></button>
+                    </li>
+                </ul>
+
+                <button class="header__main-burger"  type="button" data-js-burger onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
+                    <svg width="50" height="50" viewbox="0 0 100 100">
+                        <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                        <path class="line line2" d="M 20,50 H 80" />
+                        <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                    </svg>
+                </button>
+                <!--https://codepen.io/ainalem/pen/wvKOEMV -->
+
+            </nav>
+        </div>
+
+        <div class="header__hero" >
+            <h2 class="mt--xlarge title--primary">Trouvez la perle rare !</h2>
+            {% if u.utilisateur_prenom is defined %}
+                <button class="mt--medium button" onclick="window.location.href='admin?entite=enchere'" type="button">ESPACE MEMBRE</button>
+            {% else %}
+                <button class="mt--medium button" onclick="window.location.href='ajouterUtilisateur'" type="button">DEVENEZ MEMBRE</button>
+            {% endif %}
+        </div>
+
+        <!--contenu menu responsive -->
+        <aside class="menu__burger menu--close" data-js-menu>
+            <div class="menu__burger--flex">
+                <p><a href="admin">Connexion</a></p>
+                {% if u.utilisateur_prenom is not defined %}
+                    <p><a href="ajouterUtilisateur">Inscription</a></p>
+                {% endif %}
+                <p><a href="">Actualités</a></p>
+                <p><a href="">Fonctionnement de la plateforme</a></p>
+                <p><a href="catalogue">Catalogue des enchères</a></p>
+                <p><a href="">À propos de Lord Reginald Stampee III</a></p>
+                <p><a href="">Termes et conditions</a></p>
+            </div>
+        </aside>
+    </header> 
+
+  <main class="wrapper-fiche">
+
+  {{ include(templateMain) }}
+
+  </main>
+
+  <footer class="footer">
+        <div class="footer--flex mt--small wrapper">
+            <div class="footer-li">
+                <h3><a href="#">À propos</a></h3>
+            </div>
+            
+            <div class="footer-li">
+                <h3><a href="mailto:s.gedeon@hotmail.fr">Contactez-nous</a></h3>
+            </div>
+
+            <div class="footer-li">
+                <h3><a href="#">Carrières</a></h3>
+            </div>
+
+            <div class="footer-li">
+                <h3><a href="#">Actualités</a></h3>
+            </div>
+
+            <div class="footer-li">
+                <h3><a href="#">termes et conditions</a></h3>
+            </div>
+        </div>
+        <nav>
+            <ul class="footer-li footer__nav-list mt--medium">
+                <li class="footer-li">
+                    <a href="http://www.facebook.com/" aria-label="facebook"><svg xmlns="http://www.w3.org/2000/svg" style="width:30px; height:30px;" viewbox="0 0 400 400"><path d="M27.6 16C15.7 16 6.2 25 6.2 36.3v327.4c0 11.3 9.5 20.3 21.4 20.3h185.6V241.4h-50.4v-55.6h50.4V145c0-47.5 30.5-73.4 75.2-73.4 21.4 0 39.7 1.5 45.2 2.1v49.6h-30.9c-24.2 0-29 10.9-29 27v35.5h57.9l-7.5 55.6h-50.4V384h98.6c11.9 0 21.4-9 21.4-20.3V36.3C393.6 25 384.1 16 372.2 16H27.6z" fill="var(--xlight-gray)"/></svg></a>
+                </li>
+                <li class="footer-li footer__media-sociaux">
+                    <a href="http://www.twitter.com/" aria-label="twitter"><svg xmlns="http://www.w3.org/2000/svg" style="width:30px; height:30px;" viewbox="0 0 400 400"><path d="M127.1 359.3c148 0 228.9-122.5 228.9-228.9 0-3.5 0-6.9-.2-10.4 15.7-11.4 29.4-25.5 40.2-41.7-14.7 6.5-30.2 10.8-46.1 12.7 16.7-10 29.4-25.9 35.3-44.5-15.7 9.4-33.1 15.9-51 19.6-30.4-32.5-81.5-33.9-113.7-3.5-20.8 19.6-29.8 49-23.3 76.8-64.7-3.3-124.9-33.7-165.8-84.1C9.9 92 20.9 139 56.3 162.7c-12.9-.4-25.3-3.9-36.5-10v1c0 38.4 26.9 71.3 64.5 78.8-11.8 3.3-24.3 3.7-36.3 1.4 10.6 32.7 40.6 55.1 75.1 55.9-28.4 22.5-63.7 34.5-99.8 34.5-6.3 0-12.9-.4-19.2-1.2 36.4 23.7 79.3 36.2 123 36.2" fill="var(--xlight-gray)"/></svg></a>
+                </li>
+                <li class="footer-li footer__media-sociaux">
+                    <a href="http://www.instagram.com/" aria-label="instagram"><svg xmlns="http://www.w3.org/2000/svg" style="width:30px; height:30px;" viewbox="0 0 400 400"><g fill="var(--xlight-gray)"><path d="M282.4 16H117.6C61.5 16 16 61.5 16 117.6v164.9c0 56 45.5 101.6 101.6 101.6h164.9c56 0 101.6-45.5 101.6-101.6V117.6C384 61.5 338.5 16 282.4 16zm68.9 266.4c0 38-30.9 68.9-68.9 68.9H117.6c-38 0-68.9-30.9-68.9-68.9V117.6c0-38 30.9-68.9 68.9-68.9h164.9c38 0 68.9 30.9 68.9 68.9v164.8h-.1z"/><path d="M200 105.1c-52.3 0-94.9 42.5-94.9 94.9 0 52.3 42.5 94.9 94.9 94.9s94.9-42.6 94.9-94.9-42.6-94.9-94.9-94.9zm0 157.1c-34.3 0-62.2-27.9-62.2-62.2s27.9-62.2 62.2-62.2 62.2 27.9 62.2 62.2-27.9 62.2-62.2 62.2zM298.8 77.5c-6.3 0-12.5 2.6-16.9 7-4.5 4.4-7 10.6-7 16.9 0 6.3 2.6 12.5 7 16.9 4.4 4.4 10.6 7 16.9 7s12.5-2.6 16.9-7c4.5-4.5 7-10.7 7-16.9 0-6.3-2.6-12.5-7-16.9-4.4-4.5-10.5-7-16.9-7z"/></g></svg></a>
+                </li>
+            </ul>
+        </nav>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/*------------------------------------*\
+  colors / settings
+\*------------------------------------*/
+
+:root {
+    --color-primary: #222E66;
+    --color-secondary: #FF0035;
+    --color-tertiary: #3D3B8E;
+
+    /* white to black */
+    --color-white: #fff;
+    --color-light-gray: whitesmoke;
+    --color-gray: gray;
+    --color-black: black;
+    --white: #ffffff;
+    --xlight-gray: #f4f4f4;
+    --light-gray: Gainsboro;
+    --gray: Silver;
+}
+
+.color-red {
+  color: var(--color-secondary);
+  text-align: center;
+  font-weight: bolder;
+}
+
+.fiche--color-red {
+  color: var(--color-secondary);
+  font-weight: bolder;
+}
+
+

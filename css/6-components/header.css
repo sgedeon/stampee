@@ -1,0 +1,208 @@
+/*------------------------------------*\
+  header / components
+\*------------------------------------*/
+
+.header__main {
+    color : var(--xlight-gray);
+    display: flex;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../Images/timbre-hero.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    font-size: 1vw;
+    justify-content: center;
+    min-height: 35vh;
+    height: 45vh;
+    position: relative;
+}
+
+@media all and (min-width: 768px) {
+    .header__main {
+        height: 75vh;
+    }
+}
+
+.header__main-fiche {
+    color : var(--xlight-gray);
+    display: flex;
+    flex-direction: column;
+    font-size: 1vw;
+    min-height: 20vh;
+    justify-content: center;
+    position: relative;
+}
+
+.header > * {
+    z-index: var(--z-index-raised);
+}
+
+.header__top {
+    background-color: var(--xlight-gray);
+    left: 0;
+    top : 0;
+    position: fixed;
+    width: 100%;
+    z-index : var(--z-index-nav);
+}
+
+.header__main-nav {
+    align-items: center;
+    color: black;
+    display: flex;
+    justify-content:space-between;
+    width: 100%;
+    min-height: 30px;
+}
+
+.header__main-logo {
+    width: 100px;
+    margin-left: 30px;
+    padding: 6px;
+}
+
+.header__main-burger {
+    margin-right: 30px;
+}
+
+.header__hero {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header__top-sub-nav {
+    display: none;
+} 
+
+.menu.active {
+    left: 0;
+}
+
+.header__top li {
+    display: none;
+}
+
+.header__recherche > input {
+    border: 1px solid var(--color-primary);
+    margin-right:2px;
+}
+
+.header__recherche > input:hover {
+    cursor: pointer;
+}
+
+.header__recherche > button:hover {
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--xlight-gray);
+}
+
+.header__recherche > button:active {
+    cursor: pointer;
+    background-color: var(--xlight-gray);
+    color: var(--color-primary);
+}
+
+#myLinks {
+    display: none;
+}
+
+/* header-reponsive */
+
+@media only screen and (min-width: 1024px) {
+    .header__top-sub-nav {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 0.8em;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+
+    .header__top {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .header__top-li {
+        margin-right : 4vw;
+    }
+
+    .header__top-sub-nav a {
+        color: var(--xlight-gray);
+        margin-right: 1.5vw;
+    }
+
+    .header__main-burger {
+        display: none;
+    }
+
+    .header__main-nav {
+        background-color: var(--xlight-gray);
+    }
+    
+    .header__main-logo {
+        width: 7%;
+        height: 7%;
+        margin-left: 80px;
+    }
+
+    .header__top li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+     
+    .menu__burger {
+        display: none;
+    }
+}
+
+/* Gestion du menu burger */
+
+.menu__burger {
+    background-color: white;
+    justify-content: center;
+    bottom: 0;
+    color: black;
+    min-height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: left .3s ease;
+    width: 100vw;
+    z-index: 15;
+}
+
+.menu__burger--flex {
+    margin-top: 100px;
+    color:var(--color-primary);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu__burger p:hover {
+    text-decoration: underline;
+    transform: scale(1.15);
+}
+
+.menu--close {
+    left: -105vw;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu--transition {
+    left: -105vw;  
+}
+
+.menu--open {
+    left: 0;
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+

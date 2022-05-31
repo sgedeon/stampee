@@ -1,0 +1,88 @@
+<script>history.pushState({}, '', 'admin?entite=enchere')</script>
+
+<section>
+
+    <div class="flex-title">
+        <h1 class="title--secondary mb--small">
+            {{ titre|upper }}
+        </h1>
+    </div>
+
+    <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction }}&nbsp;</p> 
+            
+    <!--grid d'enchères -->
+    <div class="grid-admin" data-js-grid>
+
+        <!--Items de grille répété 12 fois -->
+        {% set index = 0 %}
+        {% set aujourdhui = ('now'|date('U')) %}
+        {% for enchere in encheres %}
+            {% set daysLeft = ((enchere.date_fin|date('U')- 'now'|date('U')) / 60 / 60 / 24) + 1 %}
+            {% set index = index + 1 %}
+            {% if enchere.date_fin|date('U') < aujourdhui and index <= 12 %}
+                <div class="grid__item grid__item-over grid__item--{{ index }}" data-js-item>
+                    <article>        
+                        <div class="tile--image-wrapper">
+                            <img src="{{ enchere.url }}" alt="{{ enchere.nom }}">
+                        </div>
+
+                        <div class="tile__border-bottom">
+                            <div class="flex">
+                                <h2 class="lot">Lot {{ enchere.id_timbre_enchere }}</h2>
+                            </div>
+                            <h3 class="mt--small">Timbres {{ enchere.pays_origine }}</h3>
+                            <p>{{ enchere.nom }}, {{ enchere.date_de_création }}</p>
+                            <p>Lot de 1 timbre</p>
+                        </div>
+                    
+                        <div class="flex">
+                            <p class="lot">Terminé</p>
+                            <img class="img-marteau mt--small" src="./Images/marteau.png" alt="">
+                            {% if enchere.mise == undefined %}
+                            <p class="color-red">Prix d'achat 0.00$</p></p>
+                            {% else %}
+                            <p class="color-red">Prix d'achat {{ enchere.mise }}$</p></p>
+                            {% endif %}
+                            <span class="confirmer button-find" data-href='admin?entite=enchere&action=s-e&id_enchere={{ enchere.id_timbre_enchere }}'>supprimer</span>
+                        </div>
+                    </article>
+                </div>
+            {% elseif enchere.date_fin|date('U') > aujourdhui and index <= 12 %}
+                <div class="grid__item grid__item--{{ index }}" data-js-item>
+                    <article>
+                        <div class="tile--image-wrapper">
+                            <img src="{{ enchere.url }}" alt="{{ enchere.nom }}">
+                        </div>
+
+                        <div class="tile__border-bottom">
+                            <div class="flex">
+                                <h2 class="lot">Lot {{ enchere.id_timbre_enchere }}</h2>
+                            </div>
+                            <h3 class="mt--small">Timbres {{ enchere.pays_origine }}</h3>
+                            <p>{{ enchere.nom }}, {{ enchere.date_de_creation }}</p>
+                            <p>Lot de 1 timbre</p>
+                        </div>
+
+                        <div class="flex">
+                            {% if enchere.mise == undefined %}
+                            <p class="mb--small">Enchère courante : 0,00$</p>
+                            {% else %}
+                            <p class="mb--small">Enchère courante : {{ enchere.mise }}$</p>
+                            {% endif %}
+                            <p class="color-red">Fin : {{ enchere.date_fin }}</p>
+                            {% if daysLeft > 1 %}
+                            <p class="color-red mb--small">{{daysLeft|number_format}} jours restant</p>
+                            {% else %}
+                            <p class="color-red mb--small">{{daysLeft|number_format}} jour restant</p>
+                            {% endif %}
+                            <span class="confirmer mt--small mb--small button-find" data-href='admin?entite=enchere&action=m-e&id_enchere={{ enchere.id_timbre_enchere }}'>modifier</span>
+                            <span class="confirmer button-find" data-href='admin?entite=enchere&action=s-e&id_enchere={{ enchere.id_timbre_enchere }}'>supprimer</span>
+                        </div>
+                    </article>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{{ include("modaleSuppression.twig") }}
+

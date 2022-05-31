@@ -1,0 +1,21 @@
+/*------------------------------------*\
+  wrapper / objects
+\*------------------------------------*/
+
+.wrapper {
+    padding: 0 6vw 5vw;
+}
+
+.wrapper-fiche {
+  padding: 0 6vw;
+}
+
+@media only screen and (min-width: 1024px) {
+    .wrapper {
+       padding:0 9.5vw 5vw;
+    }
+}
+
+.wrapper-enchere {
+  height:70%;
+}

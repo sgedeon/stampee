@@ -1,0 +1,98 @@
+ <div class="mt--medium grid-info">
+    <section class="flex-info grid__item--1">
+        <div class="mb--small">
+            <h2>
+                Enchérissez en quelques clics !
+            </h2>
+            <p>Après plus de 200 ans d'existence, la philatélie à enfin trouvé une plateforme d'échange à sa mesure.</p>
+        </div>
+        <ul>
+            <li>1. Inscrivez-vous</li>
+            <li class="mt--small">2. Trouvez la perle rare</li>
+            <li class="mt--small">3. Enchérissez</li>
+        </ul>
+        {% if u.utilisateur_prenom is defined %}
+            <button class="mt--medium button-find" onclick="window.location.href='admin?entite=enchere'" type="button">Espace Membre</button>
+        {% else %}
+            <button class="mt--medium button-find" onclick="window.location.href='ajouterUtilisateur'" type="button">Inscrivez-vous</button>
+        {% endif %}
+    </section>
+    <section class="flex-info grid__item--2">
+        <h2>
+            Le coeur de l'actualité philatélique c'est ici !
+        </h2>
+        <div>
+            <p>Pour nous la philatélie est plus qu'une passion, c'est un voyage à travers l'espace et le temps.</p>
+            <p>Notre équipe travaille sans relâche pour vous amenez en quelques clics le meilleur de l'actualité philatélique.</p>
+            <p>Votre passion c'est la nôtre.</p>
+        </div>
+        <button class="button-find mt--small" type="button">Consultez les actualités</button>
+    </section>
+    <section class="flex-info grid__item--3">
+        <div>
+            <h2>
+                LA référence mondiale de la philatélie !
+            </h2>
+            <p class="mt--small">Avec une expertise s'étalant sur plus d'un demi siècle et plusieurs millions de timbres vendus le Lord Stampee vous invite à vivre la philatélie avec une expérience à la hauteur de votre passion</p>
+        </div>
+        <button class="button-find mt--small" type="button">Voir nos archives</button>
+    </section>
+</div>
+
+<section>
+    <h2 class="title--secondary mt--medium grid__item--5">
+        Le lord a trouvé pour vous :
+    </h2>
+    <div class="grid-acceuil mt--small mb--medium">
+    {% set index = 0 %}
+    {% set aujourdhui = ('now'|date('U')) %}
+    {% for enchere in encheres %}
+        {% if enchere.date_fin|date('U') >= aujourdhui and enchere.coup_de_coeur_du_lord == "oui" and index < 4 %}
+        {% set index = index + 1 %}
+            <a href="fiche?id_enchere={{ enchere.id_timbre_enchere }}" class="grid__item grid__item--{{ index }}" data-js-item>
+                <article>
+                    <div>
+                        <div class="tile--image-wrapper">
+                            <img src="{{ enchere.url }}" alt=""{{ enchere.nom }}"">
+                        </div>
+                        <div class="flex">
+                            <h2 class="lot">Lot {{ enchere.id_timbre_enchere }}</h2>
+                        </div>
+                        <h3 class="mt--small">Timbre {{ enchere.pays_origine }}</h3>
+                        <p>{{ enchere.nom }}, {{ enchere.date_de_création }}</p>
+                        <p>Lot de 1 timbre</p>
+                    </div>
+                </article>
+            </a>
+        {% endif %}
+    {% endfor %}
+    </div>
+</section>
+
+<section class="mt--medium">
+    <div class="grid-lord">
+        <div class="tile--image-wrapper-lord grid__item--1">
+            <a href=""><img src="./Images/stampee.jpeg" alt="Stampee"></a>
+        </div>
+        <div class="grid__item--2 flex-actu">
+            <h1>Une vie un timbre à la fois</h1>
+            <p class="mt--small">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, et! Sunt, beatae sed laboriosam voluptates harum, enim magni corrupti assumenda, illum error voluptatibus libero neque! Natus voluptatum illo eum officiis?</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, et! Sunt, beatae sed laboriosam voluptates harum, enim magni corrupti assumenda, illum error voluptatibus libero neque! Natus voluptatum illo eum officiis?,Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste eius ducimus sequi nesciunt consectetur quis ipsum adipisci voluptatum. Blanditiis architecto, aperiam obcaecati quam accusantium natus optio unde dolores. Praesentium, quisquam?</p>
+            <button class="button-find mt--small" type="button">Plus sur le lord ?</button>
+        </div>
+    </div>
+</section>
+
+<section class="mt--medium mb--large">
+    <div class="grid-actu">
+        <div class="tile--image-wrapper-actu grid__item--1">
+            <a href="./fiche.html"><img src="./Images/timbre-13.jpeg" alt="TRE SKILLING JAUNE"></a>
+        </div>
+        <div class="grid__item--2 flex-actu">
+            <h1>La vente du siècle</h1>
+            <p class="mt--small">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, et! Sunt, beatae sed laboriosam voluptates harum, enim magni corrupti assumenda, illum error voluptatibus libero neque! Natus voluptatum illo eum officiis?</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, et! Sunt, beatae sed laboriosam voluptates harum, enim magni corrupti assumenda, illum error voluptatibus libero neque! Natus voluptatum illo eum officiis?,Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste eius ducimus sequi nesciunt consectetur quis ipsum adipisci voluptatum. Blanditiis architecto, aperiam obcaecati quam accusantium natus optio unde dolores. Praesentium, quisquam?</p>
+            <button class="button-find mt--small" type="button">Plus d'actualités</button>
+        </div>
+    </div>
+</section>

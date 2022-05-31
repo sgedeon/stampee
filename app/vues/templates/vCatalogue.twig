@@ -1,0 +1,149 @@
+ <div class="flex-title">
+    <h1 class="title--secondary mt--small">
+        CATALOGUE DES ENCHÈRES
+    </h1>
+    <div class="fav mb--small mt--small">
+        <div class="button" id="listBtn"><i class="fa fa-list"></i></div>
+        <div class="button" id="gridBtn"><i class="fa fa-th-large"></i></div>
+    </div>
+</div>
+        
+<!--grid d'enchères -->
+<div class="grid" data-js-grid>
+        <!--formulaire recherche avancée -->
+    <article class="tile grid__item--1 flex-form">
+        <form class="recherche"  method="POST" action="catalogue">
+            <h3>Recherche avancée</h3>
+   
+                <label for="min">Prix minimum :</label>
+                <div class="input--flex">
+                    <input type="range" value="0" id="min" name="min" min="0" max="3000" oninput="this.nextElementSibling.firstElementChild.value = this.value">
+                    <span><output>0</output>$</span>
+                </div>
+            
+                <label for="max">Prix maximum :</label>
+                <div class="input--flex">
+                    <input type="range" value="0" id="max" name="max" min="0" max="50000" oninput="this.nextElementSibling.firstElementChild.value = this.value">
+                    <span><output>0</output>$</span>
+                </div>
+         
+                <label for="année">Année d'édition minimum :</label>
+                <div class="input--flex">
+                    <input type="range" id="année" value= "1750" name="année" min="1750" max="2022" oninput="this.nextElementSibling.value = this.value">
+                    <output>1750</output>
+                </div>
+    
+                <div class="select--flex">
+                    <label for="pays">Pays :</label>
+                    <select name="pays" id="pays" class="mt--xsmall select">
+                        <option value="" autofocus>Tous les pays</option>
+                        <option value="Algérie">Algérie</option>
+                        <option value="Angleterre">Angleterre</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Chine">Chine</option>
+                        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                        <option value="Egypte">Égypte</option>
+                        <option value="Inde">Inde</option>
+                        <option value="USA">États-Unis</option>
+                        <option value="France">France</option>
+                        <option value="Japon">Japon</option>
+                        <option value="Mexique">Mexique</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Sénégal">Sénégal</option>
+                        <option value="Tunisie">Tunisie</option>
+                        <option value="Turquie">Turquie</option>
+                    </select>
+                </div>
+    
+                <div class="input--flex">
+                    <label for="condition">Condition :</label>
+                    <select name="condition" id="condition" class="mt--xsmall select">
+                        <option value="Bonne">Bonne</option>
+                        <option value="Parfaite">Parfaite</option>
+                        <option value="Usagé">Usagé</option>
+                        <option value="très usagé">Très usagé</option>
+                    </select>
+                </div>
+    
+            <div class="mt--small">
+                <button class="button-find" type="submit">Soumettre</button>
+            </div>
+        </form>
+    </article>
+    <p>{{ messageRetourAction }}&nbsp;</p>  
+    <!--Items de grille répété 12 fois -->
+    {% set index = 1 %}
+    {% set aujourdhui = ('now'|date('U')) %}
+    {% for enchere in encheres %}
+        {% set daysLeft = ((enchere.date_fin|date('U')- 'now'|date('U')) / 60 / 60 / 24) + 1 %}
+        {% if enchere.date_fin|date('U') < aujourdhui  and index <= 12 %}
+        {% set index = index + 1 %}
+        <a href="fiche?id_enchere={{ enchere.id_timbre_enchere }}" class="grid__item grid__item-over grid__item--{{ index }}" data-js-item>
+            <article>        
+                <div class="tile--image-wrapper">
+                    <img src="{{ enchere.url }}" alt="{{ enchere.nom }}">
+                </div>
+
+                <div class="tile__border-bottom">
+                    <div class="flex">
+                        <h2 class="lot">Lot {{ enchere.id_timbre_enchere }}</h2>
+                    </div>
+                    <h3 class="mt--small">Timbre {{ enchere.pays_origine }}</h3>
+                    <p>{{ enchere.nom }}, {{ enchere.date_de_création }}</p>
+                    <p>Lot de 1 timbre</p>
+                </div>
+            
+                <div class="flex">
+                    <p class="lot">Terminé</p>
+                    <img class="img-marteau mt--small" src="./Images/marteau.png" alt="">
+                    <p class="color-red">Prix d'achat {{ enchere.mise }}$</p>
+                </div>
+            </article>
+        </a>
+        {% elseif (enchere.date_fin|date('U') > aujourdhui) and (enchere.date_debut|date('U') <= aujourdhui) and (index <= 12) %}
+        {% set index = index + 1 %}
+        <a  href="fiche?id_enchere={{ enchere.id_timbre_enchere }}" class="grid__item grid__item--{{ index }}" data-js-item>
+            <article>
+                <div class="tile--image-wrapper">
+                    <img src="{{ enchere.url }}" alt="{{ enchere.nom }}">
+                </div>
+
+                <div class="tile__border-bottom">
+                    <div class="flex">
+                        <h2 class="lot">Lot {{ enchere.id_timbre_enchere }}</h2>
+                    </div>
+                    <h3 class="mt--small">Timbre {{ enchere.pays_origine }}</h3>
+                    <p>{{ enchere.nom }}, {{ enchere.date_de_creation }}</p>
+                    <p>Lot de 1 timbre</p>
+                </div>
+
+                <div class="flex">
+                    {% if enchere.mise == undefined %}
+                      <p class="mb--small">Enchère courante : 0$</p>
+                    {% else %}
+                      <p class="mb--small">Enchère courante : {{ enchere.mise }}$</p>
+                    {% endif %}
+                    <img class="img-marteau" src="./Images/marteau.png" alt="">
+                    <p class="color-red">Fin : {{ enchere.date_fin }}</p>
+                    {% if daysLeft > 1 %}
+                      <p class="color-red mb--small">{{daysLeft|number_format}} jours restant</p>
+                    {% else %}
+                      <p class="color-red mb--small">{{daysLeft|number_format}} jour restant</p>
+                    {% endif %}
+                </div>
+            </article>
+         </a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="pagination mt--medium">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a class="active" href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+</div>  

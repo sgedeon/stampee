@@ -1,0 +1,91 @@
+<section>
+  <div class="flex-title">
+      <h1 class="title--secondary mb--small">
+          {{ titre|upper }}
+      </h1>
+  </div>
+
+  {% set month = ('now'|date('m')) %}
+  {% set day = ('now'|date('d')) %}
+  {% set nextday = ('now'|date_modify('+1 day')|date('d')) %}
+  {% set year = ('now'|date('Y')) %}
+  {% set today = year ~ "-" ~ month ~ "-" ~ day %}
+  {% set tomorrow = year ~ "-" ~ month ~ "-" ~ nextday %}
+  <form method="POST" class="connexion" enctype="multipart/form-data">
+
+    <label>Date début de l'enchère</label>
+    <input type="date" name="enchere_date_debut" min="{{ enchere.date_debut }}" value="{{ enchere.date_debut }}">
+    <span>&nbsp;{{ erreursEnchere.enchere_date_debut}}</span>
+
+    <label>Date fin de l'enchère</label>
+    <input type="date" name="enchere_date_fin" min="{{ tomorrow }}" value="{{ enchere.date_fin }}">
+    <span>&nbsp;{{ erreursEnchere.enchere_date_fin}}</span>
+
+    <label>Prix plancher</label>
+    <input type="number" name="enchere_prix_plancher" placeholder="1$" min = 1 value="{{ enchere.prix_plancher }}">
+    <span>&nbsp;{{ erreursEnchere.enchere_prix_plancher }}</span>
+
+    <label>Coup de coeur du lord</label>
+    <select name="enchere_coup_de_coeur_du_lord">
+      <option value="oui">Oui</option>
+      <option value="non">Non</option>
+    </select>
+    <span>&nbsp;{{ erreursEnchere.enchere_coup_de_coeur_du_lord }}</span>
+
+    <label>Nom du timbre</label>
+    <input type="text" name="timbre_nom" maxlength="45" value="{{ enchere.nom }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_nom }}</span>
+
+    <label>Année d'impression</label>
+    <input type="number" name="timbre_date_de_creation" min = 1870 max = 2022  placeholder="1870" value="{{ enchere.date_de_creation }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_date_de_creation }}</span>
+
+    <label>Couleur(s) du timbre</label>
+    <input type="text" name="timbre_couleurs" value="{{ enchere.couleurs }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_couleurs }}</span>
+
+    <label>Pays d'origine</label>
+    <input type="text" name="timbre_pays_origine" maxlength="45" value="{{ enchere.pays_origine }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_pays_origine }}</span>
+
+    <label>Tirage</label>
+    <input type="text" name="timbre_tirage" value="{{ enchere.tirage }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_tirage }}</span>
+
+    <label>Dimensions</label>
+    <input type="text" name="timbre_dimensions" placeholder="20mm x 20mm" value="{{ enchere.dimensions }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_dimensions }}</span>
+
+    <label>Condition</label>
+    <select name="timbre_etat" value="{{ enchere.etat}}">
+      <option value="Bonne">Bonne</option>
+      <option value="Excellente">Excellente</option>
+      <option value="Usagé">Usagé</option>
+      <option value="Très usagé">Très usagé</option>
+    </select>
+    <span>&nbsp;{{ erreursEnchere.timbre_etat }}</span>
+
+    <label>Certification</label>
+    <select name="timbre_certification" value="{{ enchere.certification }}">
+      <option value="Certifié" selected>Certifié</option>
+      <option value="Non">Non</option>
+    </select>
+    <span>&nbsp;{{ erreursEnchere.timbre_certification }}</span>
+
+    <label>Titre de l'image</label>
+    <input type="text" name="timbre_image_titre" value="{{ enchere.titre }}">
+    <span>&nbsp;{{ erreursEnchere.timbre_image_titre }}</span>
+
+    <label>Image principale</label>
+    <input type="file" name="timbre_image-1" required accept=".jpg, .jpeg">
+
+    <label>Image 2</label>
+    <input type="file" name="timbre_image-2" accept=".jpg, .jpeg">
+
+    <label>Image 3</label>
+    <input type="file" name="timbre_image-3" accept=".jpg, .jpeg">
+
+    <input type="submit" class="button" value="Envoyer">
+  </form>
+  
+</section>
