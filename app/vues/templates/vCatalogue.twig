@@ -76,7 +76,7 @@
     {% set aujourdhui = ('now'|date('U')) %}
     {% for enchere in encheres %}
         {% set daysLeft = ((enchere.date_fin|date('U')- 'now'|date('U')) / 60 / 60 / 24) + 1 %}
-        {% if enchere.date_fin|date('U') < aujourdhui  and index <= 12 %}
+        {% if enchere.date_fin|date('U') < aujourdhui and index <= 12 %}
         {% set index = index + 1 %}
         <a href="fiche?id_enchere={{ enchere.id_timbre_enchere }}" class="grid__item grid__item-over grid__item--{{ index }}" data-js-item>
             <article>        

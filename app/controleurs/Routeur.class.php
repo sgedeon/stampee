@@ -17,8 +17,8 @@ class Routeur {
     ["fiche",              "Frontend",              "fiche"]
   ];
 
-  const BASE_URI = "\/Stampee-finale-SGedeon\/";
-  //const BASE_URI = "\/";
+  // const BASE_URI = "\/Stampee-finale-SGedeon\/";
+  const BASE_URI = "\/";
 
   const ERROR_FORBIDDEN = "HTTP 403";
   const ERROR_NOT_FOUND = "HTTP 404";
